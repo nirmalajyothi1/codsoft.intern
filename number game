@@ -1,0 +1,42 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class NumberGame {
+    public static void main(String[] args) {
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+
+        int targetNumber = random.nextInt(100) + 1; // Number between 1 and 100
+        int attempts = 0;
+        int maxAttempts = 10;
+        boolean isGuessed = false;
+
+        System.out.println("Welcome to the Number Guessing Game!");
+        System.out.println("I have selected a number between 1 and 100.");
+        System.out.println("You have " + maxAttempts + " attempts to guess it.");
+
+        while (attempts < maxAttempts) {
+            System.out.print("Enter your guess: ");
+            int playerGuess = scanner.nextInt();
+            attempts++;
+
+            if (playerGuess == targetNumber) {
+                isGuessed = true;
+                break;
+            } else if (playerGuess < targetNumber) {
+                System.out.println("Too low! Try again.");
+            } else {
+                System.out.println("Too high! Try again.");
+            }
+        }
+
+        if (isGuessed) {
+            System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+        } else {
+            System.out.println("Sorry! You've used all " + maxAttempts + " attempts.");
+            System.out.println("The correct number was: " + targetNumber);
+        }
+
+        scanner.close();
+    }
+}
